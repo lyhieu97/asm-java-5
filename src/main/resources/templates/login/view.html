@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+       <h1>Log in</h1>
+        <th:block th:if="${message}">
+            <p th:text="${message}"/>
+        </th:block>
+        <!-- Login Form -->
+        <form th:action="@{/login}" th:object="${user}" method="post">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="username" th:field="*{username}">
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" th:field="*{pass}">
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+        <div id="formFooter">
+            <a class="underlineHover">Do you have an account ?</a>
+            <br>
+            <a class="underlineHover" th:href="@{/register}">Register now !</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

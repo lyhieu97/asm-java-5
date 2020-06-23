@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FOOT</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">FOOT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login/logout}">Logout</a>
+                </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary btn-number">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <a class="btn btn-success btn-sm ml-3" th:href="@{/cart}">
+                    <i class="fa fa-shopping-cart"></i> Cart
+                    <span class="badge badge-light"></span>
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
+<section class="jumbotron text-center">
+    <div class="container">
+      WELCOME <span th:text="${session.username}"></span> TO FOOT !
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Category</a></li>
+                    <li class="breadcrumb-item"><a href="#">Sub-category</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-3">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                <ul class="list-group category_block">
+                    <li class="list-group-item"><a href="#">Man</a></li>
+                    <li class="list-group-item"><a href="#">Women</a></li>
+                    <li class="list-group-item"><a href="#">Children</a></li>
+                </ul>
+            </div>
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase">Last product</div>
+                <div class="card-body">
+                    <img class="img-fluid" src="https://bizweb.dktcdn.net/100/062/136/products/gn201-1.png?v=1559964374357" />
+                    <h5 class="card-title">Giày Nam Cổ Cao</h5>
+                    <p class="card-text">Loại Giày: đi chơi, dạo phố Bảo hành keo 12 tháng Giao Hàng Tận Nơi Toàn Quốc Nhận Hàng Trả Tiền Sản phẩm giống hình 100%</p>
+                    <p class="bloc_left_price">299.000 $</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col" >
+            <div class="row">
+                <th:block th:each="Product : ${Product}">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img class="card-img-top" th:src="${'/images/' + Product.images}" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title"><a title="View Product" th:text="${Product.name}"></a></h4>
+                            <p class="card-text">Loại Giày: đi chơi, dạo phố Bảo hành keo 12 tháng Giao Hàng Tận Nơi Toàn Quốc Nhận Hàng Trả Tiền Sản phẩm giống hình 100%.</p>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="btn btn-danger btn-block" th:text="${Product.price}"></p>
+                                </div>
+                                <div class="col">
+                                    <a th:href="@{/cart/buy/{id}(id=${Product.getId()})}" class="btn btn-success btn-block">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </th:block>
+            </div>
+    </div>
+</div>
+<!-- Footer -->
+</div>
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright © Your Website 2020</p>
+    </div>
+</footer>
+</body>
+</html>

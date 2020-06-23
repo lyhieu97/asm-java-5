@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>USER LIST</h1>
+    <p>
+        <a href="/user/create">Create New User</a>
+    </p>
+    <table border="1" cellpadding="10" id="customers">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="User : ${user}">
+            <tr>
+                <td th:text="${User.id}"></td>
+                <td th:text="${User.username}"></td>
+                <td th:text="${User.pass}"></td>
+                <td>
+                    <!--/*@thymesVar id="getId" type=""*/-->
+                    <a th:href="@{/user/delete/{id}(id=${User.getId()})}">Delete</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/user/update/{id}(id=${User.getId()})}">Update</a>
+                </td>
+            </tr>
+            </span>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

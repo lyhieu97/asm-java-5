@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product list</title>
+    <style>
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>PRODUCT LIST</h1>
+    <th:block th:if="${message}">
+        <p th:text="${message}"/>
+    </th:block>
+    <p><a href="/product/create">Create New Product</a></p>
+    <table border="1" cellpadding="10" id="customers">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Images</th>
+            <th>Price</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>C_ID</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="Product : ${Product}">
+            <tr>
+                <td th:text="${Product.id}"></td>
+                <td th:text="${Product.name}"></td>
+                <td th:text="${Product.images}"></td>
+                <td th:text="${Product.price}"></td>
+                <td th:text="${Product.size}"></td>
+                <td th:text="${Product.descriptionn}"></td>
+                <td th:text="${Product.cid}"></td>
+                <td>
+                    <!--/*@thymesVar id="getId" type=""*/-->
+                    <a th:href="@{/product/delete/{id}(id=${Product.getId()})}">Delete</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/product/update/{id}(id=${Product.getId()})}">Update</a>
+                </td>
+            </tr>
+            </span>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
